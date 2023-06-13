@@ -8,7 +8,7 @@ import java.util.List;
 public class Mensa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    int Id;
     String name;
     String location;
     float rating;
@@ -29,6 +29,13 @@ public class Mensa {
     }
 
 
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
 
     public String getName() {
         return name;
