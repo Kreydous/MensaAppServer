@@ -1,0 +1,5 @@
+# Created at 2023-06-13T13:14:18.719
+Boot Manifest-JAR contains absolute paths in classpath 'F:\Fakultet\HSB\Mobile computing\MensaServer\MensaAppServer\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
