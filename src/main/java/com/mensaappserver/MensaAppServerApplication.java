@@ -40,7 +40,7 @@ public class MensaAppServerApplication implements CommandLineRunner{
         scrapeWebsite();
     }
 
-    @Scheduled(cron = "0 0 0 * * *") // Run once every day at midnight
+    @Scheduled(cron = "0 0 4 * * *") // Run once every day at midnight
     public void scrapeWebsite() {
         try {
             // Scrape the website using Jsoup

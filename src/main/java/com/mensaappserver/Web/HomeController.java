@@ -41,4 +41,14 @@ public class HomeController {
     public List<Food> getPlate(@RequestParam String mensaName){
         return _foodService.getAllFromMensa(mensaName);
     }
+
+    @PostMapping(path = "/addRatingForMensa")
+    public Mensa addRatingToMensa(@RequestParam String mensaName,@RequestParam String comment,@RequestParam int rating){
+        return _mensaService.addReviewToMensa(mensaName,comment,rating);
+    }
+
+    @PostMapping(path = "/addRatingForPlate")
+    public Food addRatingForPlate(@RequestParam String foodName,@RequestParam String mensaName,@RequestParam String comment,@RequestParam int rating){
+        return _foodService.addReviewForFood(foodName,mensaName,comment,rating);
+    }
 }

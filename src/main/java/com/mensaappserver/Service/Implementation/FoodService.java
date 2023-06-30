@@ -4,19 +4,20 @@ import com.mensaappserver.Models.Category;
 import com.mensaappserver.Models.Food;
 import com.mensaappserver.Models.Rating;
 import com.mensaappserver.Repository.FoodRepository;
+import com.mensaappserver.Repository.RatingRepository;
 import com.mensaappserver.Service.IFoodService;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class FoodService implements IFoodService {
     private final FoodRepository _foodRepo;
-
-    public FoodService(FoodRepository foodRepo) {
+    private final RatingRepository _ratingRepo;
+    public FoodService(FoodRepository foodRepo, RatingRepository ratingRepo) {
         _foodRepo = foodRepo;
+        _ratingRepo = ratingRepo;
     }
 
     @Override
@@ -58,5 +59,19 @@ public class FoodService implements IFoodService {
     @Override
     public List<Food> getAllFromMensa(String mensaName) {
         return _foodRepo.getAllByMensaNameAndDateModified(mensaName,LocalDate.now());
+    }
+
+    @Override
+    public Food addReviewForFood(String foodName,String mensaName, String comment, int rating) {
+        Food foodForRating = _foodRepo.findByNameAndMensaName(foodName,mensaName);
+        if(foodForRating !=null){
+            List<Rating> ratings = foodForRating.getRatings();
+            Rating newRating = new Rating(comment,rating);
+            newRating = _ratingRepo.save(newRating);
+            ratings.add(newRating);
+            foodForRating.setRatings(ratings);
+            _foodRepo.save(foodForRating);
+        }
+        return null;
     }
 }
