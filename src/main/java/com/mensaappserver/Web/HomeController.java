@@ -37,4 +37,8 @@ public class HomeController {
        return _foodService.getAllPlates();
     }
 
+    @PostMapping(path = "/platesFromMensa")
+    public List<Food> getPlate(@RequestParam String mensaName){
+        return _foodService.getAllFromMensa(mensaName);
+    }
 }

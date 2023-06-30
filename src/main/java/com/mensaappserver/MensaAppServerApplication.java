@@ -37,7 +37,7 @@ public class MensaAppServerApplication implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        //scrapeWebsite();
+        scrapeWebsite();
     }
 
     @Scheduled(cron = "0 0 0 * * *") // Run once every day at midnight
@@ -58,7 +58,8 @@ public class MensaAppServerApplication implements CommandLineRunner{
                 float rating = 0;
                 List<Rating> ratings = new ArrayList<>();
                 List<Food> foodMeals = new ArrayList<>();
-                List<Element> foodDescription =mensaPage.select("table.food-category");
+                //doc.select(":not([style*='display:none']):not([hidden])");
+                List<Element> foodDescription =mensaPage.select("#food-plan-0 .food-category:not([style*='display:none']):not([hidden])");
                 for(Element el:foodDescription){
                     List<String> offerCategory = el.select("th.category-name").stream().map(Element::text).toList();
                     String foodOfferCategory = offerCategory.get(0);

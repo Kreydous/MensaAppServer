@@ -15,8 +15,7 @@ public class Mensa {
 
     @OneToMany(fetch = FetchType.EAGER)
     List<Rating> ratings;
-    /*@OneToMany
-    List<Food> foodMeals;*/
+
 
     public Mensa(){}
 
@@ -25,7 +24,6 @@ public class Mensa {
         this.location = location;
         this.rating = rating;
         this.ratings = ratings;
-        //this.foodMeals = foodMeals;
     }
 
 

@@ -12,4 +12,5 @@ public interface IFoodService {
     public List<Food> getAllByName(String name);
     public List<Food> getAllByCategory(List<Category> categories);
     public Food addFood(String name, String PriceForStudents, String PriceForNonStudents, List<Category> Categories, float Rating, List<Rating> ratings,String offerCategory,String mensaName);
+    public List<Food> getAllFromMensa(String mensaName);
 }

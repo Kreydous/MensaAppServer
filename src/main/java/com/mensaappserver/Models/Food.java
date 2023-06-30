@@ -1,7 +1,10 @@
 package com.mensaappserver.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,13 +19,23 @@ public class Food {
     List<Category> categories;
     float rating;
     String offerCategory;
+    LocalDate dateModified;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     String mensaName;
     @OneToMany(fetch = FetchType.EAGER)
     List<Rating> ratings;
 
     public Food(){}
 
-    public Food(String name, String priceForStudents, String priceForNonStudents, List<Category> categories, float rating, List<Rating> ratings, String offerCategory,String mensaName) {
+    public Food(String name, String priceForStudents, String priceForNonStudents, List<Category> categories, float rating, List<Rating> ratings, String offerCategory,String mensaName,LocalDate dateModified) {
         this.name = name;
         this.priceForStudents = priceForStudents;
         this.priceForNonStudents = priceForNonStudents;
@@ -31,14 +44,12 @@ public class Food {
         this.ratings = ratings;
         this.offerCategory = offerCategory;
         this.mensaName = mensaName;
+        this.dateModified = dateModified;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDateModified(LocalDate dateModified) {
+        this.dateModified = dateModified;
     }
 
     public String getMensaName() {

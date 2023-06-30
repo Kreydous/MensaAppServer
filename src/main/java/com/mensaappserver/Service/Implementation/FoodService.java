@@ -7,6 +7,8 @@ import com.mensaappserver.Repository.FoodRepository;
 import com.mensaappserver.Service.IFoodService;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -39,16 +41,22 @@ public class FoodService implements IFoodService {
 
     @Override
     public Food addFood(String name, String PriceForStudents, String PriceForNonStudents, List<Category> Categories, float Rating, List<Rating> Ratings,String offerCategory,String mensaName) {
-        Food newFood = _foodRepo.findByNameAndAndMensaName(name,mensaName);
+        Food newFood = _foodRepo.findByNameAndMensaName(name,mensaName);
         if(newFood == null){
-            newFood = new Food(name,PriceForStudents,PriceForNonStudents,Categories, Rating,Ratings,offerCategory,mensaName);
+            newFood = new Food(name,PriceForStudents,PriceForNonStudents,Categories, Rating,Ratings,offerCategory,mensaName, LocalDate.now());
         }else{
             newFood.setName(name);
             newFood.setPriceForStudents(PriceForStudents);
             newFood.setPriceForNonStudents(PriceForNonStudents);
             newFood.setCategories(Categories);
             newFood.setOfferCategory(offerCategory);
+            newFood.setDateModified(LocalDate.now());
         }
         return _foodRepo.save(newFood);
+    }
+
+    @Override
+    public List<Food> getAllFromMensa(String mensaName) {
+        return _foodRepo.getAllByMensaNameAndDateModified(mensaName,LocalDate.now());
     }
 }
