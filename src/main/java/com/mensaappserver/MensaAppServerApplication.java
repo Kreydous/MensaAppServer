@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -21,7 +22,6 @@ import java.util.List;
 
 
 @SpringBootApplication
-@EnableScheduling
 public class MensaAppServerApplication implements CommandLineRunner{
     private final MensaService _mensaService;
     private final FoodService _foodService;
@@ -37,7 +37,7 @@ public class MensaAppServerApplication implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        scrapeWebsite();
+        //scrapeWebsite();
     }
 
     @Scheduled(cron = "0 0 4 * * *") // Run once every day at midnight
